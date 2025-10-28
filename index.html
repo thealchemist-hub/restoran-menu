@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Restoran Menü</title>
+  <style>
+    /* Basit, temiz ve mobil-öncelikli stil */
+    :root{
+      --accent:#c0392b;
+      --text:#222;
+      --muted:#666;
+      --card:#fff;
+      --bg:#f6f6f6;
+      --radius:12px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--text);}
+    .wrap{max-width:900px;margin:18px auto;padding:16px;}
+    header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#e74c3c);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700; font-size:22px;}
+    h1{margin:0;font-size:20px;}
+    .desc{color:var(--muted);margin-top:4px;font-size:13px;}
+    nav{display:flex;gap:8px;margin:12px 0;overflow:auto;padding-bottom:6px;}
+    nav button{background:none;border:0;padding:8px 12px;border-radius:999px;font-weight:600;cursor:pointer;}
+    nav button.active{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+    .menu-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+    .category{background:var(--card);border-radius:var(--radius);padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.04);}
+    .category h2{margin:0 0 8px 0;font-size:16px;}
+    .item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px dashed #eee;}
+    .item:first-of-type{border-top:0;padding-top:0;}
+    .item .name{font-weight:600;}
+    .item .desc{font-size:13px;color:var(--muted);}
+    .price{font-weight:700;color:var(--accent);}
+    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px;}
+    /* Responsive image (if you add) */
+    .thumb{width:72px;height:56px;border-radius:8px;object-fit:cover;margin-left:12px;}
+    /* larger screens */
+    @media(min-width:700px){
+      .menu-grid{grid-template-columns:1fr 1fr;gap:18px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">RS</div>
+      <div>
+        <h1>RESTORAN ADI</h1> <!-- BURAYI DEĞİŞTİR -->
+        <div class="desc">Güncel Menü — Hizmet saatleri: 10:00 - 22:00</div> <!-- BURAYI DEĞİŞTİR -->
+      </div>
+    </header>
+
+    <nav id="tabs">
+      <!-- Tab butonlarını değiştir/ekle -->
+      <button class="active" data-cat="kahvalti">Kahvaltı</button>
+      <button data-cat="izgara">Izgara</button>
+      <button data-cat="icecek">İçecekler</button>
+      <button data-cat="tatli">Tatlılar</button>
+    </nav>
+
+    <main class="menu-grid" id="menu">
+      <!-- Category: Kahvaltı -->
+      <section class="category" data-cat="kahvalti">
+        <h2>Kahvaltı</h2>
+        <div class="item">
+          <div>
+            <div class="name">Serpme Kahvaltı</div>
+            <div class="desc">2 kişilik, peynir, zeytin, bal</div>
+          </div>
+          <div class="price">₺150</div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="name">Menemen</div>
+            <div class="desc">Domates, yumurta, biber</div>
+          </div>
+          <div class="price">₺55</div>
+        </div>
+      </section>
+
+      <!-- Category: Izgara -->
+      <section class="category" data-cat="izgara" style="display:none">
+        <h2>Izgara</h2>
+        <div class="item">
+          <div>
+            <div class="name">Izgara Köfte (150g)</div>
+            <div class="desc">Ev yapımı sos ile</div>
+          </div>
+          <div class="price">₺85</div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="name">Tavuk Şiş</div>
+            <div class="desc">Yanında pilav</div>
+          </div>
+          <div class="price">₺79</div>
+        </div>
+      </section>
+
+      <!-- Category: İçecekler -->
+      <section class="category" data-cat="icecek" style="display:none">
+        <h2>İçecekler</h2>
+        <div class="item">
+          <div>
+            <div class="name">Türk Kahvesi</div>
+            <div class="desc">Fincan</div>
+          </div>
+          <div class="price">₺25</div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="name">Ayran</div>
+            <div class="desc">Soğuk</div>
+          </div>
+          <div class="price">₺15</div>
+        </div>
+      </section>
+
+      <!-- Category: Tatlılar -->
+      <section class="category" data-cat="tatli" style="display:none">
+        <h2>Tatlılar</h2>
+        <div class="item">
+          <div>
+            <div class="name">Baklava (2 dilim)</div>
+            <div class="desc">Ev yapımı</div>
+          </div>
+          <div class="price">₺40</div>
+        </div>
+        <div class="item">
+          <div>
+            <div class="name">Sütlaç</div>
+            <div class="desc">Fırınlanmış</div>
+          </div>
+          <div class="price">₺27</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>Adres: Örnek Mah. 12/A — Tel: 0 (555) 000 0000</div>
+      <div style="margin-top:6px">Instagram: @restoran — Açıklamalar ve alerjen bilgileri için personelden bilgi alınız.</div>
+    </footer>
+  </div>
+
+  <script>
+    // Basit sekme (tab) mantığı — değişiklik yapmak kolay
+    const tabs = document.querySelectorAll("#tabs button");
+    const cats = document.querySelectorAll("[data-cat]");
+    tabs.forEach(btn=>{
+      btn.addEventListener("click", ()=> {
+        tabs.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        const key = btn.getAttribute("data-cat");
+        cats.forEach(s=>{
+          s.style.display = s.getAttribute("data-cat") === key ? "" : "none";
+        });
+        // Mobilde en üste çık
+        window.scrollTo({top:0, behavior:"smooth"});
+      });
+    });
+  </script>
+</body>
+</html>
